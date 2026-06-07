@@ -40,7 +40,7 @@ jobs:
       run: |
         pip install aqtinstall
 
-        python -m aqt install-qt windows desktop 6.11.0 win64_msvc2022_64 -O C:\Qt
+        python -m aqt install-qt windows desktop 6.10.0 win64_msvc2022_64 -O C:\Qt
 
     # ─────────────────────────────────────────────
     # 5. Set Qt environment variables
@@ -48,8 +48,8 @@ jobs:
     - name: Configure Qt environment
       shell: pwsh
       run: |
-        echo "Qt6_DIR=C:\Qt\6.11.0\msvc2022_64\lib\cmake\Qt6" >> $env:GITHUB_ENV
-        echo "PATH=C:\Qt\6.11.0\msvc2022_64\bin;$env:PATH" >> $env:GITHUB_ENV
+        echo "Qt6_DIR=C:\Qt\6.10.0\msvc2022_64\lib\cmake\Qt6" >> $env:GITHUB_ENV
+        echo "PATH=C:\Qt\6.10.0\msvc2022_64\bin;$env:PATH" >> $env:GITHUB_ENV
 
     # ─────────────────────────────────────────────
     # 6. Configure CMake
@@ -57,7 +57,7 @@ jobs:
     - name: Configure CMake
       run: |
         cmake -B build -G "Visual Studio 17 2022" -A x64 ^
-          -DQt6_DIR="C:\Qt\6.11.0\msvc2022_64\lib\cmake\Qt6"
+          -DQt6_DIR="C:\Qt\6.10.0\msvc2022_64\lib\cmake\Qt6"
 
     # ─────────────────────────────────────────────
     # 7. Build
