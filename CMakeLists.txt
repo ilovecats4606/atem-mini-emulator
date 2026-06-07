@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.16)
 project(atem-emulator VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -41,7 +41,7 @@ set_target_properties(AtemVirtualCam PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/Debug"
 )
 
-# ── Main executable ───────────────────────────────────────────────────────────
+# ── Main executable ─────────────────────────────────────────────────────────
 add_executable(atem-emulator WIN32 ${SOURCES})
 
 target_include_directories(atem-emulator PRIVATE src src/vcam)
