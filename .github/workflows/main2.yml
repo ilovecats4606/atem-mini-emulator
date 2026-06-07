@@ -39,8 +39,8 @@ jobs:
       shell: pwsh
       run: |
         pip install aqtinstall
-
         python -m aqt install-qt windows desktop 6.10.0 win64_msvc2022_64 -O C:\Qt
+        python -m aqt install-qt windows desktop 6.10.0 win64_msvc2022_64 -m multimedia -O C:\Qt
 
     # ─────────────────────────────────────────────
     # 5. Set Qt environment variables
@@ -55,8 +55,9 @@ jobs:
     # 6. Configure CMake
     # ─────────────────────────────────────────────
     - name: Configure CMake
+      shell: pwsh
       run: |
-        cmake -B build -G "Visual Studio 17 2022" -A x64 ^
+        cmake -B build -G "Visual Studio 17 2022" -A x64 `
           -DQt6_DIR="C:\Qt\6.10.0\msvc2022_64\lib\cmake\Qt6"
 
     # ─────────────────────────────────────────────
@@ -72,10 +73,8 @@ jobs:
       shell: pwsh
       run: |
         mkdir dist
-
         copy build\Release\*.exe dist\
         copy build\Release\*.dll dist\ -ErrorAction SilentlyContinue
-
         Compress-Archive -Path dist\* -DestinationPath atem-emulator-win64.zip
 
     # ─────────────────────────────────────────────
